@@ -1,0 +1,17 @@
+1. Why should connection strings never be hardcoded in your source code?
+Answer:Hardcoding secrets is a severe security risk. If the code is pushed to a public repository, 
+anyone can read the secret and compromise your Azure resources. Environment variables keep secrets separate from code.
+
+2. What is the difference between running an app locally with a .env file and running it on App Service with Application Settings?
+Answer: The `.env` file is used only for local development and should never be committed to Git. 
+On App Service, you set the same variables in the **Application Settings** of the Azure portal. 
+The code uses `os.environ.get()` in both cases, requiring no changes.
+
+3. What would you change or add if this were a real production API?
+Answer:  
+- Add authentication (API keys or OAuth2).  
+- Add pagination to `GET /posts` to avoid returning huge datasets.  
+- Implement input validation and sanitization.  
+- Add logging and monitoring (e.g., Azure Application Insights).  
+- Use rate limiting to prevent abuse.  
+- Enforce HTTPS (already done by Azure).
